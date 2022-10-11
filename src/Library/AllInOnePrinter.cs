@@ -8,24 +8,17 @@ using System.IO;
 
 namespace Full_GRASP_And_SOLID.Library
 {
-    public enum Destination
-    {
-        Console,
-        File
-    }
-
+  
     public class AllInOnePrinter
     {
-        public void PrintRecipe(Recipe recipe, Destination destination)
-        {
-            if (destination == Destination.Console)
-            {
+        public void PrintRecipeonConsole(Recipe recipe)
+        {                               
                 Console.WriteLine(recipe.GetTextToPrint());
-            }
-            else
-            {
-                File.WriteAllText("Recipe.txt", recipe.GetTextToPrint());
-            }
+        }
+// Se divide en dos métodos ya que la clase solo se ocupa de imprimir. Se aplica el principio SRP y Expert ya que la clase solo imprime, puede decidir si a un archivo o a la consola.
+        public void PrintRecipeonFile(Recipe recipe)
+        {
+            File.WriteAllText("Recipe.txt", recipe.GetTextToPrint());
         }
     }
 }
